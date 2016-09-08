@@ -15,6 +15,7 @@ app.use(parser.json());
 app.use(parser.urlencoded({extended: true}));
 
 app.get("/prompts", promptsController.index)
+app.get("/prompts/:id", promptsController.show)
 
 app.listen(app.get("port"), function(){
   console.log("Hey Im awake!");

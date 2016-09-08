@@ -6,6 +6,11 @@ var promptsController = {
     PromptModel.find({}, function(err, docs){
       res.json(docs)
     })
+  },
+  show: function(req,res){
+    PromptModel.findById(req.params.id, function(err,docs){
+      res.json(docs)
+    })
   }
 }
 
