@@ -14,7 +14,12 @@ var promptsController = {
   },
   create: function(prompt){
     console.log(prompt.body.body)
-
+    var prompt = new PromptModel({body: prompt.body.body})
+    prompt.save(function(err){
+      if(err){
+        return handleError(err);
+      }
+    })
   },
   createStory: function(prompt, story){
     PromptModel.findOne({_id: prompt._id}, function(err,docs){
