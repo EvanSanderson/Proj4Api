@@ -21,19 +21,18 @@ var promptsController = {
       }
     })
   },
-  createStory: function(prompt, story){
-    PromptModel.findOne({_id: prompt._id}, function(err,docs){
-      docs.stories.push(new StoryModel({body: story}))
-      docs.save(function(err,results){
+  addStory: function(prompt, story){
+    var promptId = prompt.params.id;
+    var storyText = story.req.body.body;
+    PromptModel.findById(promptId, function(err,docs){
+      docs.stories.push(new StoryModel({body: storyText}))
+      docs.save(function(err){
         if(err){
-          console.log(err)
-        }
-        else {
-          console.log(results)
+          return handleError(err)
         }
       })
     })
   }
-}
 
+}
 module.exports = promptsController
