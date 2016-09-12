@@ -46,6 +46,38 @@ var promptsController = {
         res.json(docs)
       })
     })
+  },
+  delete: function(req,res){
+      PromptModel.findByIdAndRemove(req.params.id, function(err,docs){
+        docs.save(function(err){
+          if(err){
+            return handleError(err)
+          }
+          res.json(docs)
+        })
+      })
+  },
+  updateStory: function(req,res){
+    console.log(req.params.story_id)
+    console.log(req.body.body)
+    PromptModel.findById(req.params.id, function(err, docs){
+      for(i=0;i<docs.stories.length;i++){
+        console.log(docs.stories[i]._id)
+        console.log("this is the req params story id" + req.params.story_id)
+        if(docs.stories[i]._id == req.params.story_id){
+          docs.stories[i].body = req.body.body
+          console.log("GOT YA")
+          docs.save(function(err){
+            if(err){
+              return handleError(err)
+            }
+            res.json(docs);
+          })
+        }
+      }
+    })
+
+
   }
 
 }
