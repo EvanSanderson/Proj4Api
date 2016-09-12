@@ -25,8 +25,6 @@ var promptsController = {
     })
   },
   addStory: function(req, res){
-    console.log(req.params.id)
-    console.log(req.body.body);
     PromptModel.findById(req.params.id, function(err,docs){
       docs.stories.push(new StoryModel({body: req.body.body}))
       docs.save(function(err){
@@ -34,6 +32,17 @@ var promptsController = {
           return handleError(err)
         }
         console.log(docs)
+        res.json(docs)
+      })
+    })
+  },
+  update: function(req,res){
+    PromptModel.findById(req.params.id, function(err,docs){
+      docs.body = req.body.body
+      docs.save(function(err){
+        if(err){
+          return handleError(err)
+        }
         res.json(docs)
       })
     })

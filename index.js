@@ -22,6 +22,7 @@ app.get("/prompts", promptsController.index)
 app.get("/prompts/:id", promptsController.show)
 app.post("/prompts", promptsController.create)
 app.post("/prompts/:id/stories", promptsController.addStory);
+app.put("/prompts/:id", promptsController.update)
 
 app.listen(app.get("port"), function(){
   console.log("Hey Im awake!");
