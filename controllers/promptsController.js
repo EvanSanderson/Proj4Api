@@ -24,15 +24,17 @@ var promptsController = {
     res.json(docs);
     })
   },
-  addStory: function(prompt, story){
-    var promptId = prompt.params.id;
-    var storyText = story.req.body.body;
-    PromptModel.findById(promptId, function(err,docs){
-      docs.stories.push(new StoryModel({body: storyText}))
+  addStory: function(req, res){
+    console.log(req.params.id)
+    console.log(req.body.body);
+    PromptModel.findById(req.params.id, function(err,docs){
+      docs.stories.push(new StoryModel({body: req.body.body}))
       docs.save(function(err){
         if(err){
           return handleError(err)
         }
+        console.log(docs)
+        res.json(docs)
       })
     })
   }
