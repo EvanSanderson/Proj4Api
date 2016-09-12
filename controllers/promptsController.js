@@ -12,13 +12,16 @@ var promptsController = {
       res.json(docs)
     })
   },
-  create: function(prompt){
-    console.log(prompt.body.body)
-    var prompt = new PromptModel({body: prompt.body.body})
-    prompt.save(function(err){
+  create: function(req, res){
+    console.log(req.body.body)
+    var prompt = new PromptModel({body: req.body.body})
+    prompt.save(function(err, docs){
       if(err){
+        console.log("errrored!!");
         return handleError(err);
       }
+      console.log("saved and responding with json next");
+    res.json(docs);
     })
   },
   addStory: function(prompt, story){
