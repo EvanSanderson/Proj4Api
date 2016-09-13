@@ -27,6 +27,7 @@ app.post("/prompts/:id/stories", promptsController.addStory)
 app.put("/prompts/:id", promptsController.update)
 app.delete("/prompts/:id", promptsController.delete)
 app.put("/prompts/:id/stories/:story_id", promptsController.updateStory)
+app.delete("/prompts/:id/stories/:story_id", promptsController.deleteStory)
 
 app.listen(app.get("port"), function(){
   console.log("Hey Im awake!");
