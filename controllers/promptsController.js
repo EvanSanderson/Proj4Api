@@ -59,11 +59,9 @@ var promptsController = {
   },
   updateStory: function(req,res){
     console.log(req.params.story_id)
-    console.log(req.body.body)
+    console.log(req.body)
     PromptModel.findById(req.params.id, function(err, docs){
       for(i=0;i<docs.stories.length;i++){
-        console.log(docs.stories[i]._id)
-        console.log("this is the req params story id" + req.params.story_id)
         if(docs.stories[i]._id == req.params.story_id){
           docs.stories[i].body = req.body.body
           docs.save(function(err){
@@ -86,6 +84,22 @@ var promptsController = {
         if(docs.stories[i]._id == storyId){
           console.log("GOT YA")
           docs.stories.splice(i, 1)
+          docs.save(function(err){
+            if(err){
+              return handleError(err)
+            }
+            res.json(docs)
+          })
+        }
+      }
+    })
+  },
+  addTag: function(req, res){
+    console.log(req.body.tag)
+    PromptModel.findById(req.params.id, function(err,docs){
+      for(i=0; i<docs.stories.length;i++){
+        if(docs.stories[i]._id == req.params.story_id){
+          docs.stories[i].tags.push(req.body.tag)
           docs.save(function(err){
             if(err){
               return handleError(err)

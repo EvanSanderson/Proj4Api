@@ -13,9 +13,9 @@ Story.remove({}, function(err){
 });
 
 
-var story1 = new Story({body: "This is the first story."})
-var story2 = new Story({body: "This is the second story."})
-var story3 = new Story({body: "This is the third story."})
+var story1 = new Story({body: "This is the first story.", tags: ["Tag1", "Tag2"]})
+var story2 = new Story({body: "This is the second story.", tags: ["Tag1", "Tag3"]})
+var story3 = new Story({body: "This is the third story.", tags: ["Tag2", "Tag4"]})
 
 var prompt1 = new Prompt({body: "This is the first prompt"})
 var prompt2 = new Prompt({body: "This is the second prompt"})

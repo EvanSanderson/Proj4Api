@@ -11,7 +11,8 @@ var ObjectId = Schema.ObjectId
 
 
 var StorySchema = new Schema({
-  body: String
+  body: String,
+  tags: [String]
 })
 
 var PromptSchema = new Schema({
