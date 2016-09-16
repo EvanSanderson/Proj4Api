@@ -10,8 +10,13 @@
     "method-override": "^2.3.6",
     "mongoose": "^4.6.0"
   },
+  "engines": {
+    "node": "6.2.2",
+    "npm": "3.9.5"
+  },
   "devDependencies": {},
   "scripts": {
+    "start": "node index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
