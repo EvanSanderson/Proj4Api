@@ -20,6 +20,10 @@ app.set("port", process.env.PORT || 3002);
 app.use(parser.json());
 app.use(parser.urlencoded({extended: true}));
 
+app.get("/", function(req,res){
+  res.send("Working")
+})
+
 app.get("/prompts", promptsController.index)
 app.get("/prompts/:id", promptsController.show)
 app.post("/prompts", promptsController.create)
